@@ -12,7 +12,6 @@
 #import "IDMPhoto.h"
 #import "IDMPhotoProtocol.h"
 #import "IDMCaptionView.h"
-#import "IDMTapDetectingImageView.h"
 
 // Delgate
 @class IDMPhotoBrowser;
@@ -25,7 +24,6 @@
 - (void)photoBrowser:(IDMPhotoBrowser *)photoBrowser willDismissAtPageIndex:(NSUInteger)index;
 - (void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissActionSheetWithButtonIndex:(NSUInteger)buttonIndex photoIndex:(NSUInteger)photoIndex;
 - (IDMCaptionView *)photoBrowser:(IDMPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index;
-- (void)photoBrowser:(IDMPhotoBrowser *)photoBrowser imageFailed:(NSUInteger)index imageView:(IDMTapDetectingImageView *)imageView;
 @end
 
 // IDMPhotoBrowser
@@ -33,6 +31,10 @@
 
 // Properties
 @property (nonatomic, strong) id <IDMPhotoBrowserDelegate> delegate;
+
+
+@property (nonatomic, strong) UIButton *doneButton;;
+
 
 // Toolbar customization
 @property (nonatomic) BOOL displayToolbar;
@@ -49,8 +51,6 @@
 @property (nonatomic) BOOL useWhiteBackgroundColor;
 @property (nonatomic, weak) UIImage *doneButtonImage;
 @property (nonatomic, weak) UIColor *trackTintColor, *progressTintColor;
-@property (nonatomic, assign) CGFloat doneButtonRightInset, doneButtonTopInset;
-@property (nonatomic, assign) CGSize doneButtonSize;
 
 @property (nonatomic, weak) UIImage *scaleImage;
 
@@ -92,5 +92,7 @@
 
 // Get IDMPhoto at index
 - (id<IDMPhoto>)photoAtIndex:(NSUInteger)index;
+
+- (void)dismissPhotoBrowserAnimated:(BOOL)animated;
 
 @end
